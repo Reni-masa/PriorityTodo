@@ -13,7 +13,30 @@
     <body class="antialiased">
         <div id="app">
             <example-component></example-component>
+
+
         </div>
+
+        <form action="api/todo" method="post">
+            <p>追加</p>
+            content：<input type="text" name="content">
+            priority_id：<input type="number" name="priority_id">
+            deadline_date：<input type="tectxt" name="deadline_date">
+            <input type="submit">
+        </form>
+        <form action="api/todo/3" method="post">
+            @method("PUT")
+            <p>更新3</p>
+            content：<input type="text" name="content">
+            priority_id：<input type="number" name="priority_id">
+            deadline_date：<input type="tectxt" name="deadline_date">
+            <input type="submit">
+        </form>
+        <form action="api/todo/3" method="post">
+            @method("DELETE")
+            <p>削除3</p>
+            <input type="submit">
+        </form>
 
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
