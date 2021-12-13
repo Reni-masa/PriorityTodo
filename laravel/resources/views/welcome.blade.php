@@ -16,7 +16,6 @@
 
 
         </div>
-
         <form action="api/todo" method="post">
             <p>追加</p>
             content：<input type="text" name="content">
