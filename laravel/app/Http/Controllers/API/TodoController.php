@@ -8,9 +8,10 @@ use App\Models\Todo;
 
 class TodoController extends Controller
 {
+    //
     public function index() {
 
-        return Todo::orderBy('priority_id')->get();
+        return Todo::all();
 
     }
 

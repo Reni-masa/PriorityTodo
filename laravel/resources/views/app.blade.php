@@ -15,6 +15,7 @@
     <body class="antialiased">
 
         <div id="app">
+
             <todo-component></todo-component>
             {{-- <example-component></example-component> --}}
         </div>

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TodoController;
+use App\Http\Controllers\API\PriorityMasterController;
 
 
 /*
@@ -22,3 +23,4 @@ use App\Http\Controllers\API\TodoController;
 
 Route::apiResource('todo', TodoController::class);
 
+Route::get('prioriry', [PriorityMasterController::class, 'index']);
