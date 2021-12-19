@@ -8,9 +8,9 @@ use App\Models\PriorityMaster;
 
 class PriorityMasterController extends Controller
 {
-    public function index() {
+  public function index() {
 
-        return PriorityMaster::all();
+    return PriorityMaster::all();
 
-    }
+  }
 }
