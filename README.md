@@ -36,8 +36,11 @@ $ docker ps -a
 //ボリューム確認
 $ docker volume ls
 
+// コンテナに入る
+$ docker-compose exec -it [コンテナ名] bash
+
 // フロント変更監視・ビルド
-$ docker-compose exec php npm run watch
+[コンテナ内]$ npm run watch
 
 ```
 
