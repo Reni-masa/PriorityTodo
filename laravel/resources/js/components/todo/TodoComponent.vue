@@ -1,50 +1,36 @@
 <template>
   <div>
-
     <!-- 第1領域 -->
-    <!-- <h1>{{priorities[0].name}}</h1>
-    <input type="text" v-model="addTodo1">
-    <input type="button" value="追加" @click="addTodo(addTodo1, priorities[0].id)">
-    <div v-for="priority1_todo in priority1_todos" :key="priority1_todo.id">
-      <input type="text" v-model="priority1_todo.content">
-      <input type="button" value="更新" @click="updateTodo(priority1_todo)">
-      <input type="button" value="削除" @click="deleteTodo(priority1_todo)">
-    </div> -->
-
-    <!-- 第2領域 -->
-    <!-- <h1>{{priorities[1].name}}</h1>
-    <input type="text" v-model="addTodo2">
-    <input type="button" value="追加" @click="addTodo(addTodo2, priorities[1].id)">
-    <div v-for="priority2_todo in priority2_todos" :key="priority2_todo.id">
-      <input type="text" v-model="priority2_todo.content">
-      <input type="button" value="更新" @click="updateTodo(priority2_todo)">
-      <input type="button" value="削除" @click="deleteTodo(priority2_todo)">
-    </div> -->
-
-    <!-- 第3領域 -->
-    <!-- <h1>{{priorities[2].name}}</h1>
-    <input type="text" v-model="addTodo3">
-    <input type="button" value="追加" @click="addTodo(addTodo3, priorities[2].id)">
-    <div v-for="priority3_todo in priority3_todos" :key="priority3_todo.id">
-      <input type="text" v-model="priority3_todo.content">
-      <input type="button" value="更新" @click="updateTodo(priority3_todo)">
-      <input type="button" value="削除" @click="deleteTodo(priority3_todo)">
-    </div> -->
-
-    <!-- 第4領域 -->
-    <!-- <h1>{{priorities[3].name}}</h1>
-    <input type="text" v-model="addTodo4">
-    <input type="button" value="追加" @click="addTodo(addTodo4, priorities[3].id)">
-    <div v-for="priority4_todo in priority4_todos" :key="priority4_todo.id">
-      <input type="text" v-model="priority4_todo.content">
-      <input type="button" value="更新" @click="updateTodo(priority4_todo)">
-      <input type="button" value="削除" @click="deleteTodo(priority4_todo)">
-    </div> -->
-
     <TodoItem
       @add-button-click="addTodo"
+      @update-button-click="updateTodo"
+      @delete-button-click="deleteTodo"
       :todoDatas="priority1_todos"
       :priotiry="priorities[0]">
+    </TodoItem>
+    <!-- 第2領域 -->
+    <TodoItem
+      @add-button-click="addTodo"
+      @update-button-click="updateTodo"
+      @delete-button-click="deleteTodo"
+      :todoDatas="priority2_todos"
+      :priotiry="priorities[1]">
+    </TodoItem>
+    <!-- 第3領域 -->
+    <TodoItem
+      @add-button-click="addTodo"
+      @update-button-click="updateTodo"
+      @delete-button-click="deleteTodo"
+      :todoDatas="priority3_todos"
+      :priotiry="priorities[2]">
+    </TodoItem>
+    <!-- 第4領域 -->
+    <TodoItem
+      @add-button-click="addTodo"
+      @update-button-click="updateTodo"
+      @delete-button-click="deleteTodo"
+      :todoDatas="priority4_todos"
+      :priotiry="priorities[3]">
     </TodoItem>
 
   </div>
@@ -61,11 +47,21 @@ export default {
     return {
       todos: [],
     	priorities:[],
-      addTodo1: "",
-      addTodo2: "",
-      addTodo3: "",
-      addTodo4: "",
     };
+  },
+  computed: {
+    priority1_todos: function() {
+      return this.todos.filter(todo => todo.priority_id === 1);
+    },
+    priority2_todos: function() {
+      return this.todos.filter(todo => todo.priority_id === 2);
+    },
+    priority3_todos: function() {
+      return this.todos.filter(todo => todo.priority_id === 3);
+    },
+    priority4_todos: function() {
+      return this.todos.filter(todo => todo.priority_id === 4);
+    }
   },
   methods: {
     // すべてのTodoデータ取得
@@ -82,7 +78,7 @@ export default {
     },
     // 追加
     addTodo: function(todo_content, priorityid) {
-      console.log(todo_content,priorityid);
+      
       if (!todo_content.length) {
         return
       }
@@ -93,12 +89,6 @@ export default {
       .then(response => {
         this.todos.unshift(response.data);
         alert("追加しました");
-        todo_content = "";
-        this.addTodo1 = "";
-        this.addTodo2 = "";
-        this.addTodo3 = "";
-        this.addTodo4 = "";
-
       })
       .catch(function(error) {
         console.log(error);
@@ -138,21 +128,6 @@ export default {
       });
     }
   },
-  computed: {
-
-    priority1_todos: function() {
-      return this.todos.filter(todo => todo.priority_id === 1);
-    },
-    priority2_todos: function() {
-      return this.todos.filter(todo => todo.priority_id === 2);
-    },
-    priority3_todos: function() {
-      return this.todos.filter(todo => todo.priority_id === 3);
-    },
-    priority4_todos: function() {
-      return this.todos.filter(todo => todo.priority_id === 4);
-    }
-},
   created: function() {
     this.getTodos();
     this.getPrioriryMaster();

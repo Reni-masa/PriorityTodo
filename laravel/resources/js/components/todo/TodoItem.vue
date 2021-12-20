@@ -2,11 +2,11 @@
   <div>
     <h1>{{priotiry.name}}</h1>
     <input type="text" v-model="addData">
-    <input type="button" value="追加" @click="addTodo">
+    <input type="button" value="追加" @click="addTodo()">
     <div v-for="todoData in todoDatas" :key="todoData.id">
       <input type="text" v-model="todoData.content">
-      <!-- <input type="button" value="更新" @click="updateTodo(todoData)">
-      <input type="button" value="削除" @click="deleteTodo(todoData)"> -->
+      <input type="button" value="更新" @click="updateTodo(todoData)">
+      <input type="button" value="削除" @click="deleteTodo(todoData)">
     </div>
   </div>
 </template>
@@ -24,7 +24,15 @@
     methods: {
       addTodo: function() {
         this.$emit('add-button-click',this.addData,this.priotiry.id);
+        this.addData = "";
+      },
+      updateTodo: function(todoData) {
+        this.$emit('update-button-click', todoData)
+      },
+      deleteTodo: function(todoData) {
+        this.$emit('delete-button-click', todoData)
       }
+
     }
   };
 </script>
