@@ -20,13 +20,13 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component(
-    'example-component',
-    require('./components/ExampleComponent.vue').default
+  'example-component',
+  require('./components/ExampleComponent.vue').default
 );
 
 Vue.component(
-    'todo-component',
-    require('./components/todo/TodoComponent.vue').default
+  'todo-component',
+  require('./components/todo/TodoComponent.vue').default
 );
 
 
@@ -37,5 +37,5 @@ Vue.component(
  */
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });
