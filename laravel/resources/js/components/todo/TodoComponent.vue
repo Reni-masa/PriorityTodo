@@ -6,7 +6,8 @@
       @update-button-click="updateTodo"
       @delete-button-click="deleteTodo"
       :todoDatas="priority1_todos"
-      :priotiry="priorities[0]">
+      :priotiry="priorities[0]"
+      accordionId='accordionOne'>
     </TodoItem>
     <!-- 第2領域 -->
     <TodoItem
@@ -14,7 +15,8 @@
       @update-button-click="updateTodo"
       @delete-button-click="deleteTodo"
       :todoDatas="priority2_todos"
-      :priotiry="priorities[1]">
+      :priotiry="priorities[1]"
+      accordionId='accordionTwe'>
     </TodoItem>
     <!-- 第3領域 -->
     <TodoItem
@@ -22,15 +24,17 @@
       @update-button-click="updateTodo"
       @delete-button-click="deleteTodo"
       :todoDatas="priority3_todos"
-      :priotiry="priorities[2]">
+      :priotiry="priorities[2]"
+      accordionId='accordionThree'>
     </TodoItem>
     <!-- 第4領域 -->
-    <TodoItem
+    <TodoItem id="hogw"
       @add-button-click="addTodo"
       @update-button-click="updateTodo"
       @delete-button-click="deleteTodo"
       :todoDatas="priority4_todos"
-      :priotiry="priorities[3]">
+      :priotiry="priorities[3]"
+      accordionId='accordionFour'>
     </TodoItem>
 
   </div>
