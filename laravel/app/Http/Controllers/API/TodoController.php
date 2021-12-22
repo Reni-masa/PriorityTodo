@@ -6,16 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 
+use App\Http\Requests\PostRequest;
+
 class TodoController extends Controller
 {
-  //
+  
   public function index() {
 
     return Todo::all();
 
   }
 
-  public function store(Request $request) {
+  public function store(PostRequest $request) {
 
     $todo = Todo::create($request->all());
 

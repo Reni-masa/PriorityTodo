@@ -83,9 +83,9 @@ export default {
     // 追加
     addTodo: function(todo_content, priorityid) {
       
-      if (!todo_content.length) {
-        return
-      }
+      // if (!todo_content.length) {
+      //   return
+      // }
       axios.post('api/todo', {
         content: todo_content,
         priority_id: priorityid
@@ -95,7 +95,7 @@ export default {
         alert("追加しました");
       })
       .catch(function(error) {
-        console.log(error);
+        console.log(error.response.data.errors); //laravelからのバリデーション取得できた。
       });
     },
     // 更新
