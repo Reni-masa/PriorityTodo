@@ -65,7 +65,7 @@ $ git commit -m "[Prefix]: 〇〇のため、□□を追加"
   - ~~コンポーネントによるcssスコープの確認~~
   - async awaitで同期的にする
 - Laravel
-  - バーリデーション 責務の分離?requestを利用して実現
+  - ~~バーリデーション 責務の分離?requestを利用して実現~~
   - テストコード調査 Feature Test
 
 

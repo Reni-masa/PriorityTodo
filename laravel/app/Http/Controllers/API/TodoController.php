@@ -25,7 +25,7 @@ class TodoController extends Controller
 
   }
 
-  public function update(Request $request, Todo $todo) {
+  public function update(PostRequest $request, Todo $todo) {
 
     $todo->content = $request->content;
     $todo->priority_id = $request->priority_id;

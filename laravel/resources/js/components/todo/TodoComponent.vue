@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-for="error in errors" :key="error.index">
+      {{error}}
+    </div>
     <!-- 第1領域 -->
     <TodoItem
       @add-button-click="addTodo"
@@ -50,7 +53,11 @@ export default {
   data: function() {
     return {
       todos: [],
-    	priorities:[],
+      priorities:[],
+      errors: {
+        content: "",
+        deadline_date: "",
+      }
     };
   },
   computed: {
@@ -83,36 +90,38 @@ export default {
     // 追加
     addTodo: function(todo_content, priorityid) {
       
-      // if (!todo_content.length) {
-      //   return
-      // }
       axios.post('api/todo', {
         content: todo_content,
-        priority_id: priorityid
+        priority_id: priorityid,
       })
-      .then(response => {
+      .then( response => {
         this.todos.unshift(response.data);
         alert("追加しました");
       })
-      .catch(function(error) {
-        console.log(error.response.data.errors); //laravelからのバリデーション取得できた。
+      .catch( error => {
+        if (error.response.data.status === 400) {
+          var error_datas = error.response.data.errors;
+          this.errors.content = error_datas.content ? error_datas.content[0] : ""
+          this.errors.deadline_date = error_datas.deadline_date ? error_datas.deadline_date[0] : ""
+        }
       });
     },
     // 更新
     updateTodo(todo) {
-      if (!todo.content.length) {
-        return
-      }
       axios.put('api/todo/' + todo.id, {
         content: todo.content,
-        deadline_date: todo.content,
+        deadline_date: todo.deadline_date,
         priority_id: todo.priority_id
       })
       .then(response => {
         alert("更新しました。")
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch( error => {
+        if (error.response.data.status === 400) {
+          var error_datas = error.response.data.errors;
+          this.errors.content = error_datas.content ? error_datas.content[0] : ""
+          this.errors.deadline_date = error_datas.deadline_date ? error_datas.deadline_date[0] : ""
+        }
       });
     },
     // 削除
@@ -128,7 +137,7 @@ export default {
         alert("削除しました");
       })
       .catch(function(error) {
-        console.log(error);
+        alert("削除に失敗しました。");
       });
     }
   },
