@@ -67,5 +67,6 @@ $ git commit -m "[Prefix]: 〇〇のため、□□を追加"
 - Laravel
   - ~~バーリデーション 責務の分離?requestを利用して実現~~
   - テストコード調査 Feature Test
-
+  - ~~testデータ作成・投下~~
+  - factoryの使い方の確立
 
